@@ -40,7 +40,7 @@ def first_chunk(middle):
 
 def last_chunk(middle):
     file = open(MYDATA_CSV, "rb")
-    file.seek(middle,0)
+    file.seek(middle+1,0)
     arr1 = list(file.read(middle).decode(encoding='utf-8'))
     print(arr1)
     print(arr1.count('\n'))
@@ -48,4 +48,13 @@ def last_chunk(middle):
 if __name__ == '__main__':
     main()
 
+#Task 3.3:	Explain why total number of lines from the first chunk and second chunk is larger than the number of lines calculated in the step (1) of Task 2.
+    # the total number of lines from first_chunk + last_chunk = 12 > 11 because the data were split in a way that happened
+    #to be in the middle of a "line", hence counting the split line twice
 
+#3.4.	Suggest an algorithm to resolve the issue from the step (3) and implement it.
+    #if prev_char not = "\n", then last_chunk = last_chunk - 1
+
+#3.5.	Check the algorithm of step (4) with multiple chunks. Define a chunk size to be 16MB. Write a function that process “mydata.csv “
+# in chunks and count number of lines for each chunk. For example, first chunk will be 0-16MB, second chunk 16MB-32BM, and so on, until the last chunk, which might be smaller.
+    #change last_chunk - 1 to next_chunk -1
