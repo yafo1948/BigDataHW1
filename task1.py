@@ -3,7 +3,6 @@
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 import csv
-import random
 import sqlite3
 
 import numpy as np
@@ -11,18 +10,18 @@ import pandas as pd
 
 MYDATA_CSV = 'mydata.csv'
 
-NUM_OF_RECORDS = 10
+NUM_OF_RECORDS = 1000000
 
 
 def main():
-    fruit=['Orange', 'Grape', 'Apple', 'Banana', 'Pineapple', 'Avocado']
-    color=['Red', 'Green', 'Yellow', 'Blue']
+    fruit = ['Orange', 'Grape', 'Apple', 'Banana', 'Pineapple', 'Avocado']
+    color = ['Red', 'Green', 'Yellow', 'Blue']
     rng = np.random.default_rng(123)
     df = pd.DataFrame()
     df["fruit"] = np.random.choice(fruit, NUM_OF_RECORDS)
     df["price"] = rng.integers(low=10, high=101, size=NUM_OF_RECORDS)
     df["color"] = np.random.choice(color, NUM_OF_RECORDS)
-    df["id"] = df.index+1
+    df["id"] = df.index + 1
     df.to_csv('%s' % MYDATA_CSV, index=False)
     print("end")
 
@@ -45,7 +44,7 @@ def main():
     else:
         print("Error! cannot create the database connection.")
 
-    with open (MYDATA_CSV, 'r') as f:
+    with open(MYDATA_CSV, 'r') as f:
         reader = csv.reader(f)
         columns = next(reader)
         query = 'insert into mydata({0}) values ({1})'
@@ -70,8 +69,6 @@ def main():
         cursor.execute(select_id_of_all_banana)
 
         rows = cursor.fetchall()
-
-
 
 
 def create_connection(db_file):
@@ -105,5 +102,3 @@ def create_table(conn, create_table_sql):
 
 if __name__ == '__main__':
     main()
-
-
