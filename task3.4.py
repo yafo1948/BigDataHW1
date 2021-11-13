@@ -47,6 +47,7 @@ def last_chunk(middle):
     print(amount_of_line_breaks_in_chunk)
     return amount_of_line_breaks_in_chunk
 
+
 if __name__ == '__main__':
     main()
 
